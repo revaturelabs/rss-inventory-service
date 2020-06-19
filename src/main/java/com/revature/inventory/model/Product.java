@@ -1,7 +1,5 @@
 package com.revature.inventory.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +24,7 @@ public class Product {
 	private String image;
 	private Integer quantity;
 	@Column(name="unit_price")
-	private BigDecimal unitPrice ;
+	private Integer unitPrice ;
 	private String color;
 	
 	public Product() {
@@ -35,7 +33,7 @@ public class Product {
 
 
 	public Product(Long id, String category, String brand, String name, String description, String model,
-			String image, Integer quantity, BigDecimal unitPrice, String color) {
+			String image, Integer quantity, Integer unitPrice, String color) {
 		super();
 		this.id = id;
 		this.category = category;
@@ -99,11 +97,11 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public BigDecimal getUnitPrice() {
+	public Integer getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
+	public void setUnitPrice(Integer unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
