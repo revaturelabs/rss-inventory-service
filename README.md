@@ -29,5 +29,5 @@ Product POJO fields:
 - private String model;
 - private String image;
 - private Integer quantity;
-- private BigDecimal unitPrice ;
+- private Integer unitPrice ;
 - private String color;
