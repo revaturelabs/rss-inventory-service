@@ -8,6 +8,9 @@ public class RevatureInventoryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RevatureInventoryApplication.class, args);
+
+		System.out.println("Hello, world!");
+
 	}
 
 }
