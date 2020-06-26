@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: P3 Inventory System
+  description: >-
+    A simple Java App that allows users and service providers connect to get and provide services. This app allows Add, Delete, Read operations.  
+    system.
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8989'
+    description: Local dev server
+paths:
+  /product:
+    post:
+      tags: [Product]
+      summary: Creates a new product entry with the given information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: A Product object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid request syntax.
+        '422':
+          description: Incomplete product information. Some required fields missing.
+    put:
+      tags: [Product]
+      summary: Updates a Product object based on information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Product successfully updated.
+    get:
+      tags: [Product]
+      summary: Retrieves ALL entry in the product list.
+      responses:
+        '200':
+          description: List of all products.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  '/product/{id}':
+    get:
+      tags: [Product]
+      summary: Retrieves a product with the give product id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the product you would like to retrieve.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product object matching given id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      tags: [Product]
+      summary: Deletes the entry for the product with the given id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the product you would like to delete.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product successfully deleted.
+components:
+  schemas:
+    Product:
+      properties:
+        id:
+          type: integer
+        category:
+          type: string
+        brand:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        model:
+          type: string
+        image:
+          type: string
+        quantity:
+          type: integer
+        unitPrice:
+          type: integer
+        color:
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - quantity
+        - unitPrice
+    Category:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - name

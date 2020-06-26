@@ -1,24 +1,20 @@
 package com.revature.inventory.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name="category_seq", initialValue=201)
+@SequenceGenerator(name = "category_seq", initialValue = 201)
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_seq")
 	private Long id;
 	private String name;
 	private String description;
-	
+
 	public Category() {
 	}
-	
+
 	public Category(Long id, String name, String description) {
 		super();
 		this.id = id;
@@ -54,10 +50,4 @@ public class Category {
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", Description=" + description + "]";
 	}
-
-
-
-	
-	
-	
 }

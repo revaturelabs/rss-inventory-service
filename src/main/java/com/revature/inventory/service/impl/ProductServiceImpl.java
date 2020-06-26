@@ -1,16 +1,16 @@
 package com.revature.inventory.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.revature.inventory.dao.ProductDao;
 import com.revature.inventory.model.Product;
 import com.revature.inventory.service.ProductService;
-import com.revature.inventory.dao.ProductDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	@Autowired
 	ProductDao productDao;
 
@@ -37,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProductById(Long id) {
 		productDao.deleteById(id);
-		
-	}
 
+	}
 }
