@@ -213,8 +213,14 @@ class ProductControllerTest2 {
 	            .andExpect(status().isNoContent());
 	
 	}
-	
-//	@Test
+
+	@Test
+	void testAddingDefaultProducts() throws Exception {
+		this.mockMvc.perform(get("/main"))
+				.andExpect(status().isOk());
+	}
+
+	//	@Test
 //	public void should_Return404_When_ProductNotFound() throws Exception {
 //	  /* setup mock */		
 //	  Mockito.when(service.findProductById(12345L)).thenReturn(null);
