@@ -23,6 +23,7 @@ public class Product {
 	@Column(name = "discounted_amount")
 	private Integer discountedAmount;
 	
+	
 
 	public Product() {
 	}
@@ -111,6 +112,9 @@ public class Product {
 	}
 
 	public Integer getUnitPrice() {
+		if(this.discounted) {			
+			return unitPrice - this.discountedAmount;
+		}
 		return unitPrice;
 	}
 
