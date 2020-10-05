@@ -112,9 +112,6 @@ public class Product {
 	}
 
 	public Integer getUnitPrice() {
-//		if(this.discounted) {			
-//			return unitPrice - this.discountedAmount;
-//		}
 		return unitPrice;
 	}
 
@@ -267,5 +264,3 @@ public class Product {
 
 	
 }
-
-
