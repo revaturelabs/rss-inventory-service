@@ -19,12 +19,18 @@ public class Product {
 	@Column(name = "unit_price")
 	private Integer unitPrice;
 	private String color;
+	private boolean discounted;
+	@Column(name = "discounted_amount")
+	private Integer discountedAmount;
+	
+	
 
 	public Product() {
 	}
 
-	public Product(Long id, String category, String brand, String name, String description, String model,
-				   String image, Integer quantity, Integer unitPrice, String color) {
+	
+	public Product(Long id, String category, String brand, String name, String description, String model, String image,
+			Integer quantity, Integer unitPrice, String color) {
 		super();
 		this.id = id;
 		this.category = category;
@@ -37,6 +43,25 @@ public class Product {
 		this.unitPrice = unitPrice;
 		this.color = color;
 	}
+
+
+	public Product(Long id, String category, String brand, String name, String description, String model, String image,
+			Integer quantity, Integer unitPrice, String color, boolean discounted, Integer discountedAmount) {
+		super();
+		this.id = id;
+		this.category = category;
+		this.brand = brand;
+		this.name = name;
+		this.description = description;
+		this.model = model;
+		this.image = image;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.color = color;
+		this.discounted = discounted;
+		this.discountedAmount = discountedAmount;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -118,14 +143,34 @@ public class Product {
 		this.brand = brand;
 	}
 
+
+	public boolean isDiscounted() {
+		return discounted;
+	}
+
+
+	public void setDiscounted(boolean discounted) {
+		this.discounted = discounted;
+	}
+
+
+	public Integer getDiscountedAmount() {
+		return discountedAmount;
+	}
+
+
+	public void setDiscountedAmount(Integer discountedAmount) {
+		this.discountedAmount = discountedAmount;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", category=" + category + ", brand=" + brand + ", name="
-				+ name + ", description=" + description + ", model=" + model + ", image=" + image + ", quantity="
-				+ quantity + ", unitPrice=" + unitPrice + ", color=" + color + "]";
+		return "Product [id=" + id + ", category=" + category + ", brand=" + brand + ", name=" + name + ", description="
+				+ description + ", model=" + model + ", image=" + image + ", quantity=" + quantity + ", unitPrice="
+				+ unitPrice + ", color=" + color + ", discounted=" + discounted + ", discountedAmount="
+				+ discountedAmount + "]";
 	}
-	
-
 
 
 	@Override
@@ -136,6 +181,8 @@ public class Product {
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (discounted ? 1231 : 1237);
+		result = prime * result + ((discountedAmount == null) ? 0 : discountedAmount.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
@@ -144,7 +191,6 @@ public class Product {
 		result = prime * result + ((unitPrice == null) ? 0 : unitPrice.hashCode());
 		return result;
 	}
-
 
 
 	@Override
@@ -175,6 +221,13 @@ public class Product {
 			if (other.description != null)
 				return false;
 		} else if (!description.equals(other.description))
+			return false;
+		if (discounted != other.discounted)
+			return false;
+		if (discountedAmount == null) {
+			if (other.discountedAmount != null)
+				return false;
+		} else if (!discountedAmount.equals(other.discountedAmount))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -208,6 +261,6 @@ public class Product {
 			return false;
 		return true;
 	}
+
+	
 }
-
-

@@ -27,6 +27,8 @@ public class ProductController {
 		productService.createProduct(new Product(113L, "Electronics", "Sony", "PS5", "A PS5", "12x", "shorts-pic.jpg", 15, 200, "Black"));
 		productService.createProduct(new Product(113L, "Electronics", "Sony", "Headphones", "Some headphones", "12x", "shorts-pic.jpg", 15, 200, "Black"));
 		productService.createProduct(new Product(113L, "Electronics", "Sony", "Gym Shorts", "Some gym shorts", "12x", "shorts-pic.jpg", 15, 200, "Black"));
+		productService.createProduct(new Product(112L, "Electronics", "Samsung", "Headphones", "Some pink headphones", "5x", "shorts-pic.jpg", 15, 200, "Black", true, 10));
+		productService.createProduct(new Product(111L, "Electronics", "Samsung", "Gym Shorts", "Some pink gym shorts", "5x", "shorts-pic.jpg", 15, 200, "Black", true, 5));
 	}
 	
 
