@@ -1,0 +1,31 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER:http://localhost:10002/eureka}
+  instance:
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+ribbon:
+  eureka:
+    enabled: true
+server:
+  port: 8989
+spring:
+  application:
+    name: inventory-service
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate_sql: true
+    show-sql: true
