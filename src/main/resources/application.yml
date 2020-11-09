@@ -1,23 +1,9 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_SERVER:http://localhost:10002/eureka}
-  instance:
-    lease-expiration-duration-in-seconds: 2
-    lease-renewal-interval-in-seconds: 1
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-ribbon:
-  eureka:
-    enabled: true
+
 server:
   port: 8989
 spring:
   application:
-    name: inventory-service
+    name: rss-inventory-service
   h2:
     console:
       enabled: true
@@ -29,3 +15,4 @@ spring:
     properties:
       hibernate_sql: true
     show-sql: true
+management:  endpoints:    web:      exposure:        include: "*"  endpoint:    health:      enabled: true      

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rss-inventory-service-deployment
+  labels:
+    app: rss-inventory-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rss-inventory-service
+  template:
+    metadata:
+      labels:
+        app: rss-inventory-service
+    spec:
+      containers:
+      - name: rss-inventory-service
+        image: baronvonfroglok/rss-inventory-service:latest
+        ports:
+        - containerPort: 8989
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8989
+          initialDelaySeconds: 30
+          periodSeconds: 30
