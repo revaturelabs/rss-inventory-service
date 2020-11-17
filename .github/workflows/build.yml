@@ -21,7 +21,7 @@ jobs:
           pwd
           ls
           # cd ./$PROJECT_ROOT
-          mvn -B clean org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
