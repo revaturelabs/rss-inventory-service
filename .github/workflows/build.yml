@@ -1,5 +1,11 @@
 name: CI/CD
-on: push
+on:
+  push:
+    branches:
+      - main
+      - github-actions3
+  pull_request:
+    types: [opened, synchronize, reopened]
 env:
   ECR_REPOSITORY_PREFIX: ${{ secrets.ECR_REPOSITORY_PREFIX }}
   ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
@@ -18,9 +24,6 @@ jobs:
           java-version: 11
       - name: Build with Maven and Sonar
         run: |
-          pwd
-          ls
-          # cd ./$PROJECT_ROOT
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
@@ -37,10 +40,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: Build the image
         id: docker_build
-        run: |
-          pwd
-          ls
-          # cd ./$PROJECT_ROOT 
+        run: | 
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
