@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
 @RibbonClient(name = "rss-inventory-service")
+@EnableDiscoveryClient
 public class RevatureInventoryApplication {
 
 	public static void main(String[] args) {
