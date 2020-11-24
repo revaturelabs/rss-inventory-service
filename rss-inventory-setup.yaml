@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rss-inventory-deployment
+  labels:
+    app: rss-inventory-service
+spec:
+  replicas: 1
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      app: rss-inventory-service
+  template:
+    metadata:
+      labels:
+        app: rss-inventory-service
+    spec:
+      containers:
+      - name: rss-inventory-service
+        image: 855430746673.dkr.ecr.us-east-1.amazonaws.com/matt-oberlies-00000916-rss-inventory-service:latest
+        ports:
+        - containerPort: 8989
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8989
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          failureThreshold: 5
+        startupProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8989
+          initialDelaySeconds: 15
+          periodSeconds: 3
+          failureThreshold: 5
+		  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rss-inventory-service
+spec:
+  selector:
+    app: rss-inventory-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8989
+      targetPort: 8989
+	  
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: rss-inventory-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /inventory(.+)
+        backend:
+          serviceName: rss-inventory-service
+          servicePort: 8989
